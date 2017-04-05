@@ -1,0 +1,17 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "extends": "airbnb",
+  "rules": {
+    "arrow-parens": 0,
+    "class-methods-use-this": 0,
+    "comma-dangle": 0,
+    "object-curly-spacing": [2, "never"],
+    "quotes": [1, "double", "avoid-escape"],
+    "no-return-assign": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": 0,
+    "react/no-array-index-key": 0,
+    "semi": [2, "never"]
+  }
+}
