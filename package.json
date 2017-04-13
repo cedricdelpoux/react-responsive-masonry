@@ -42,6 +42,7 @@
     "dist": "webpack -p",
     "build": "babel ./src --out-dir ./lib --source-maps -d lib/",
     "watch": "webpack --progress --colors --watch",
-    "prepublish": "npm run clean && npm run build && npm run dist"
+    "prepublish": "npm run clean && npm run build && npm run dist",
+    "release": "npmpub"
   }
 }
