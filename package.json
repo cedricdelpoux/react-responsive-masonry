@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-masonry",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React responsive masonry component built with css flexbox",
   "browser": "./dist/index.js",
   "main": "lib/index.js",

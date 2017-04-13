@@ -17,9 +17,6 @@ const styles = {
     flexGrow: 1,
     flexBasis: 0,
   },
-  item: {
-    margin: "5px",
-  },
 }
 
 class Masonry extends Component {
@@ -41,8 +38,9 @@ class Masonry extends Component {
   }
 
   renderColumn(column) {
+    const {gutter} = this.props
     return column.map((item, i) => (
-      <div key={i} style={styles.item}>
+      <div key={i} style={{margin: gutter}}>
         {item}
       </div>
     ))
@@ -68,10 +66,12 @@ class Masonry extends Component {
 Masonry.propTypes = {
   children: PropTypes.array.isRequired,
   columnsCount: PropTypes.number,
+  gutter: PropTypes.string,
 }
 
 Masonry.defaultProps = {
   columnsCount: 3,
+  gutter: "0",
 }
 
 export default Masonry
