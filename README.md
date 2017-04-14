@@ -73,7 +73,7 @@ class MyWrapper extends Component {
 
 ## Development
 
-### Clean `lib` and `dist` folders
+### Clean `lib`
 
 ```js
 npm run clean
@@ -83,12 +83,6 @@ npm run clean
 
 ```js
 npm run build
-```
-
-### Build `dist` folder
-
-```js
-npm run dist
 ```
 
 ### Watch `src` folder

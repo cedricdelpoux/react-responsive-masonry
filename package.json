@@ -1,8 +1,7 @@
 {
   "name": "react-responsive-masonry",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "React responsive masonry component built with css flexbox",
-  "browser": "./dist/index.js",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -31,18 +30,19 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "webpack": "^2.3.2"
+    "npmpub": "^3.1.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.0"
   },
   "peerDependencies": {
-    "react": "^15.0.0"
+    "prop-types": "^15.5.0",
+    "react": "^15.5.0"
   },
   "scripts": {
-    "clean": "rm -rf lib dist",
+    "clean": "rm -rf lib",
     "lint": "eslint src/",
-    "dist": "webpack -p",
-    "build": "babel ./src --out-dir ./lib --source-maps -d lib/",
-    "watch": "webpack --progress --colors --watch",
-    "prepublish": "npm run clean && npm run build && npm run dist",
+    "build": "babel ./src --out-dir ./lib --source-maps -d ./lib",
+    "prepublish": "yarn run clean && yarn run build",
     "release": "npmpub"
   }
 }
