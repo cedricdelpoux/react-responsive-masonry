@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-masonry",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "React responsive masonry component built with css flexbox",
   "main": "lib/index.js",
   "repository": {
@@ -42,7 +42,7 @@
     "clean": "rm -rf lib",
     "lint": "eslint src/",
     "build": "babel ./src --out-dir ./lib --source-maps -d ./lib",
-    "prepublish": "yarn run clean && yarn run build",
+    "prepublish": "npm run clean && npm run build",
     "release": "npmpub"
   }
 }
