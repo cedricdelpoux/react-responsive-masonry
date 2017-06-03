@@ -1,3 +1,7 @@
+# 1.2.2 - 2017-06-03
+
+* Add: `files` to package.json
+
 # 1.2.1 - 2017-06-03
 
 * Update: Use `npm` to publish package

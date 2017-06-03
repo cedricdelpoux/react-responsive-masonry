@@ -1,8 +1,7 @@
 {
   "name": "react-responsive-masonry",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "React responsive masonry component built with css flexbox",
-  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xuopled/react-responsive-masonry.git"
@@ -20,6 +19,10 @@
     "url": "https://github.com/xuopled/react-responsive-masonry/issues"
   },
   "homepage": "https://github.com/xuopled/react-responsive-masonry#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-eslint": "^7.2.1",
