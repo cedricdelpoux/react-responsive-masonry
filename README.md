@@ -66,7 +66,7 @@ class MyWrapper extends Component {
 
 ### Mansonry component
   * `columnsCount`: Number - injected by ResponsiveMasonry - default 3,
-  * `gutter`: String - margin surrounding each item (in pixels) - default "0",
+  * `gutter`: String - margin surrounding each item - default "0" - eg: "10px",
 
 ### ResponsiveMasonry component
   * `columnsCountBreakPoints`: Object, keys are breakpoints in px, values are the columns number - default {350: 1, 750: 2, 900: 3},

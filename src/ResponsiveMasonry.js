@@ -1,6 +1,8 @@
 import React, {Component} from "react"
 import PropTypes from "prop-types"
 
+const DEFAULT_COLUMNS_COUNT = 1
+
 class MasonryResponsive extends Component {
   constructor(props) {
     super(props)
@@ -30,7 +32,9 @@ class MasonryResponsive extends Component {
     const {columnsCountBreakPoints} = this.props
     const containerWidth = this.container.offsetWidth
     const breakPoints = this.getSortedBreakPoints()
-    let columnsCount
+    let columnsCount = breakPoints.length > 0
+      ? columnsCountBreakPoints[breakPoints[0]]
+      : DEFAULT_COLUMNS_COUNT
 
     breakPoints.forEach(breakPoint => {
       if (breakPoint < containerWidth) {

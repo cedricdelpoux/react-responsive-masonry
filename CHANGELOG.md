@@ -1,3 +1,7 @@
+# 1.2.3 - 2017-06-14
+
+* Update: handle default columns count
+
 # 1.2.2 - 2017-06-03
 
 * Add: `files` to package.json
