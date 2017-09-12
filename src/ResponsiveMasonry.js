@@ -12,6 +12,7 @@ class MasonryResponsive extends Component {
     }
 
     this.handleResize = this.handleResize.bind(this)
+    this.handleRef = this.handleRef.bind(this)
   }
 
   componentDidMount() {
@@ -51,9 +52,14 @@ class MasonryResponsive extends Component {
     this.updateColumnsCount()
   }
 
+  handleRef (ref) {
+    if (!this.container)
+      this.container = ref
+  }
+
   render() {
     return (
-      <div ref={ref => this.container = ref} className={this.props.className}>
+      <div ref={this.handleRef} className={this.props.className}>
         {React.Children.map(this.props.children, (child, index) =>
           React.cloneElement(child, {
             key: index,
