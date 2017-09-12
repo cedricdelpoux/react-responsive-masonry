@@ -65,7 +65,10 @@ class Masonry extends Component {
 }
 
 Masonry.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   columnsCount: PropTypes.number,
   gutter: PropTypes.string,
   className: PropTypes.string

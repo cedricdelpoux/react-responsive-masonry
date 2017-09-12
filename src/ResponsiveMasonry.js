@@ -66,7 +66,10 @@ class MasonryResponsive extends Component {
 }
 
 MasonryResponsive.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   columnsCountBreakPoints: PropTypes.object,
   className: PropTypes.string
 }
