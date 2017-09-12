@@ -53,7 +53,7 @@ class MasonryResponsive extends Component {
 
   render() {
     return (
-      <div ref={ref => this.container = ref}>
+      <div ref={ref => this.container = ref} className={this.props.className}>
         {React.Children.map(this.props.children, (child, index) =>
           React.cloneElement(child, {
             key: index,
@@ -68,6 +68,7 @@ class MasonryResponsive extends Component {
 MasonryResponsive.propTypes = {
   children: PropTypes.any.isRequired,
   columnsCountBreakPoints: PropTypes.object,
+  className: PropTypes.string
 }
 
 MasonryResponsive.defaultProps = {
@@ -76,6 +77,7 @@ MasonryResponsive.defaultProps = {
     750: 2,
     900: 3,
   },
+  className: null
 }
 
 export default MasonryResponsive
