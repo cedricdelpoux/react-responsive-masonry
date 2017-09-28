@@ -57,7 +57,7 @@ class Masonry extends Component {
 
   render() {
     return (
-      <div style={styles.container}>
+      <div style={styles.container} className={this.props.className}>
         {this.renderColumns()}
       </div>
     )
@@ -65,14 +65,19 @@ class Masonry extends Component {
 }
 
 Masonry.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   columnsCount: PropTypes.number,
   gutter: PropTypes.string,
+  className: PropTypes.string
 }
 
 Masonry.defaultProps = {
   columnsCount: 3,
   gutter: "0",
+  className: null
 }
 
 export default Masonry
