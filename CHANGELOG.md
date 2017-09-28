@@ -1,3 +1,9 @@
+# 1.3.3 - 2017-09-28
+
+* Add: custom className support
+* Add: single node children support
+* Fix: do not reset this.container
+
 # 1.2.3 - 2017-06-14
 
 * Update: handle default columns count

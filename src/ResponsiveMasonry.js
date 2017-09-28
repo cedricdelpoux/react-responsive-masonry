@@ -33,9 +33,10 @@ class MasonryResponsive extends Component {
     const {columnsCountBreakPoints} = this.props
     const containerWidth = this.container.offsetWidth
     const breakPoints = this.getSortedBreakPoints()
-    let columnsCount = breakPoints.length > 0
-      ? columnsCountBreakPoints[breakPoints[0]]
-      : DEFAULT_COLUMNS_COUNT
+    let columnsCount =
+      breakPoints.length > 0
+        ? columnsCountBreakPoints[breakPoints[0]]
+        : DEFAULT_COLUMNS_COUNT
 
     breakPoints.forEach(breakPoint => {
       if (breakPoint < containerWidth) {
@@ -52,9 +53,8 @@ class MasonryResponsive extends Component {
     this.updateColumnsCount()
   }
 
-  handleRef (ref) {
-    if (!this.container)
-      this.container = ref
+  handleRef(ref) {
+    if (!this.container) this.container = ref
   }
 
   render() {
@@ -74,10 +74,10 @@ class MasonryResponsive extends Component {
 MasonryResponsive.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
   columnsCountBreakPoints: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
 }
 
 MasonryResponsive.defaultProps = {
@@ -86,7 +86,7 @@ MasonryResponsive.defaultProps = {
     750: 2,
     900: 3,
   },
-  className: null
+  className: null,
 }
 
 export default MasonryResponsive
