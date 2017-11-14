@@ -1,18 +1,12 @@
 {
   "name": "react-responsive-masonry",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "React responsive masonry component built with css flexbox",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xuopled/react-responsive-masonry.git"
   },
-  "keywords": [
-    "react",
-    "masonry",
-    "css",
-    "flexbox",
-    "responsive"
-  ],
+  "keywords": ["react", "masonry", "css", "flexbox", "responsive"],
   "author": "Cédric Delpoux <xuopled@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -20,9 +14,7 @@
   },
   "homepage": "https://github.com/xuopled/react-responsive-masonry#readme",
   "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-eslint": "^7.2.1",
@@ -35,11 +27,12 @@
     "eslint-plugin-react": "^6.10.3",
     "npmpub": "^3.1.0",
     "prop-types": "^15.5.8",
-    "react": "^15.5.0"
+    "react": "^16.0.0"
   },
   "peerDependencies": {
     "prop-types": "^15.5.0",
-    "react": "^15.5.0 || ^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "scripts": {
     "clean": "rm -rf lib",

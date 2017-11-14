@@ -1,3 +1,8 @@
+# 1.4.0 - 2017-11-14
+
+* Add: img alt for a11y accessibility
+* Update: react v16 as a peer dependency
+
 # 1.3.3 - 2017-09-28
 
 * Add: custom className support

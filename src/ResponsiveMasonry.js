@@ -1,9 +1,9 @@
-import React, {Component} from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 const DEFAULT_COLUMNS_COUNT = 1
 
-class MasonryResponsive extends Component {
+class MasonryResponsive extends React.Component {
   constructor(props) {
     super(props)
 

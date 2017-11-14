@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 const styles = {
@@ -20,7 +20,7 @@ const styles = {
   },
 }
 
-class Masonry extends Component {
+class Masonry extends React.Component {
   getColumns() {
     const {children, columnsCount} = this.props
     const columns = []
