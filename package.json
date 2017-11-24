@@ -25,9 +25,11 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "jest": "^21.2.1",
     "npmpub": "^3.1.0",
     "prop-types": "^15.5.8",
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.1.1"
   },
   "peerDependencies": {
     "prop-types": "^15.5.0",
@@ -37,8 +39,9 @@
   "scripts": {
     "clean": "rm -rf lib",
     "lint": "eslint src/",
-    "build": "babel ./src --out-dir ./lib --source-maps -d ./lib",
+    "build": "babel ./src --out-dir ./lib --source-maps -d ./lib --ignore spec.js",
     "prepublish": "npm run clean && npm run build",
-    "release": "npmpub"
+    "release": "npmpub",
+    "test": "jest"
   }
 }
