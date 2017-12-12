@@ -1,3 +1,7 @@
+# 1.5.0 - 2017-12-12
+
+* Fix: SSR
+
 # 1.4.0 - 2017-11-14
 
 * Add: img alt for a11y accessibility
