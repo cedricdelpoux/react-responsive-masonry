@@ -8,7 +8,7 @@ class MasonryResponsive extends React.Component {
     super(props)
 
     this.state = {
-      columnsCount: null,
+      columnsCount: DEFAULT_COLUMNS_COUNT,
     }
 
     this.handleResize = this.handleResize.bind(this)
