@@ -24,6 +24,10 @@ directly in your html, you could get it from the UNPKG CDN
 https://unpkg.com/react-responsive-masonry/umd/react-responsive-masonry.js
 ```
 
+## Demo
+
+See [Demo page][github-page]
+
 ## Example
 
 ![React-responsive-masonry gif](/demo/src/example.gif)
