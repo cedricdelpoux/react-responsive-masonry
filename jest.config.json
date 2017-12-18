@@ -1,0 +1,10 @@
+{
+  "coverageDirectory": "./coverage/",
+  "collectCoverage": true,
+  "transform": {
+    "^.+\\.js$": "<rootDir>/jest.transform.js"
+  },
+  "moduleNameMapper": {
+    "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
+  }
+}

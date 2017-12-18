@@ -1,16 +1,32 @@
-# react-responsive-masonry ![npm](https://img.shields.io/npm/v/react-responsive-masonry.svg) ![license](https://img.shields.io/npm/l/react-responsive-masonry.svg) ![github-issues](https://img.shields.io/github/issues/xuopled/react-responsive-masonry.svg)
+# react-responsive-masonry
 
-React responsive masonry component built with css flexbox with no dependencies
+[![npm package][npm-badge]][npm] [![Travis][build-badge]][build]
+[![Codecov][codecov-badge]][codecov] ![Module formats][module-formats]
 
-## Install
+A lightweight responsive React pie chart component using only SVG
 
-```sh
-npm install --save react-responsive-masonry
+## Getting started
+
+[![react-responsive-masonry](https://nodei.co/npm/react-responsive-masonry.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-responsive-masonry/)
+
+You can download `react-responsive-masonry` from the NPM registry via the `npm` or
+`yarn` commands
+
+```shell
+yarn add react-responsive-masonry
+npm install react-responsive-masonry --save
+```
+
+If you don't use package manager and you want to include `react-responsive-masonry`
+directly in your html, you could get it from the UNPKG CDN
+
+```html
+https://unpkg.com/react-responsive-masonry/umd/react-responsive-masonry.js
 ```
 
 ## Example
 
-![React-responsive-masonry gif](/screenshots/example.gif)
+![React-responsive-masonry gif](/demo/src/example.gif)
 
 ## Usage
 
@@ -18,84 +34,66 @@ If you want the number of columns change by resizing the window, you need to wra
 Otherwise, you only need to use the `Masonry` component.
 
 ```js
-import React, {Component} from "react"
+import React from "react"
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
-const images = [
-    "https://unsplash.it/200/300?image=1050",
-    "https://unsplash.it/400/400?image=1039",
-    "https://unsplash.it/400/300?image=1017",
-    "https://unsplash.it/200/200?image=997",
-    "https://unsplash.it/500/400?image=287",
-    "https://unsplash.it/400/500?image=955",
-    "https://unsplash.it/200/300?image=916",
-    "https://unsplash.it/300/300?image=110",
-    "https://unsplash.it/300/300?image=206",
-]
-
 // The number of columns change by resizing the window
-class MyWrapper extends Component {
-  render() {
-    return (
-        <ResponsiveMasonry columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}>
-        	<Masonry>
-        		{images.map((image, i) =>
-        			<img key={i} src={image} style={{width: "100%", display: "block"}} alt="" />
-        		)}
-        	</Masonry>
-    	</ResponsiveMasonry>
-    )
-  }
+class MyWrapper extends React.Component {
+    render() {
+        return (
+            <ResponsiveMasonry
+                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+            >
+                <Masonry>
+                    <ChildA />
+                    <ChildB />
+                    {/* Children */}
+                    <ChildY />
+                    <ChildZ />
+                </Masonry>
+            </ResponsiveMasonry>
+        )
+    }
 }
 
 // The number of columns don't change by resizing the window
 class MyWrapper extends Component {
-  render() {
-    return (
-    	<Masonry columnsCount={3}>
-    		{images.map((image, i) =>
-    			<img key={i} src={image} style={{width: "100%", display: "block"}} />
-    		)}
-    	</Masonry>
-    )
-  }
+    render() {
+        return (
+            <Masonry columnsCount={3}>
+                <ChildA />
+                <ChildB />
+                {/* Children */}
+                <ChildY />
+                <ChildZ />
+            </Masonry>
+        )
+    }
 }
 ```
 
 ## Props
 
 ### Mansonry component
-  * `columnsCount`: Number - injected by ResponsiveMasonry - default 3,
-  * `gutter`: String - margin surrounding each item - default "0" - eg: "10px",
+
+| Name         | PropType | Description                   | Default |
+| ------------ | -------- | ----------------------------- | ------- |
+| columnsCount | Number   | Injected by ResponsiveMasonry | 3       |
+| gutter       | String   | Margin surrounding each item  | "0"     |
 
 ### ResponsiveMasonry component
-  * `columnsCountBreakPoints`: Object, keys are breakpoints in px, values are the columns number - default {350: 1, 750: 2, 900: 3},
 
-## Development
+| Name                    | PropType | Description                                               | Default                  |
+| ----------------------- | -------- | --------------------------------------------------------- | ------------------------ |
+| columnsCountBreakPoints | Object   | Keys are breakpoints in px, values are the columns number | {350: 1, 750: 2, 900: 3} |
 
-### Clean `lib`
+## Contributing
 
-```js
-npm run clean
-```
+* ⇄ Pull/Merge requests and ★ Stars are always welcome.
+* For bugs and feature requests, please [create an issue][github-issue].
+* Pull requests must be accompanied by passing automated tests (`npm test`).
 
-### Build `lib` folder
-
-```js
-npm run build
-```
-
-### Watch `src` folder
-
-```js
-npm run watch
-```
-
-### Lint `src` folder
-
-```js
-npm run lint
-```
+See [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines
 
 ## Changelog
 
@@ -103,4 +101,15 @@ See [changelog](./CHANGELOG.md)
 
 ## License
 
-See [MIT](./LICENCE)
+This project is licensed under the MIT License - see the
+[LICENCE.md](./LICENCE.md) file for details
+
+[npm-badge]: https://img.shields.io/npm/v/react-responsive-masonry.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/react-responsive-masonry
+[build-badge]: https://img.shields.io/travis/xuopled/react-responsive-masonry/master.svg?style=flat-square
+[build]: https://travis-ci.org/xuopled/react-responsive-masonry
+[codecov-badge]: https://img.shields.io/codecov/c/github/xuopled/react-responsive-masonry.svg?style=flat-square
+[codecov]: https://codecov.io/gh/xuopled/react-responsive-masonry
+[module-formats]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20esm-green.svg?style=flat-square
+[github-page]: https://xuopled.github.io/react-responsive-masonry
+[github-issue]: https://github.com/xuopled/react-responsive-masonry/issues/new

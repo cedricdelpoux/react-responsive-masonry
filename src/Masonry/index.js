@@ -23,16 +23,10 @@ const styles = {
 class Masonry extends React.Component {
   getColumns() {
     const {children, columnsCount} = this.props
-    const columns = []
+    const columns = Array.from({length: columnsCount}, () => [])
 
     React.Children.forEach(children, (child, index) => {
-      const columnIndex = index % columnsCount
-
-      if (!Array.isArray(columns[columnIndex])) {
-        columns[columnIndex] = []
-      }
-
-      columns[columnIndex].push(child)
+      columns[index % columnsCount].push(child)
     })
 
     return columns
@@ -56,8 +50,9 @@ class Masonry extends React.Component {
   }
 
   render() {
+    const {className, style} = this.props
     return (
-      <div style={styles.container} className={this.props.className}>
+      <div style={{...styles.container, ...style}} className={className}>
         {this.renderColumns()}
       </div>
     )
@@ -72,12 +67,14 @@ Masonry.propTypes = {
   columnsCount: PropTypes.number,
   gutter: PropTypes.string,
   className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 Masonry.defaultProps = {
   columnsCount: 3,
   gutter: "0",
   className: null,
+  style: {},
 }
 
 export default Masonry

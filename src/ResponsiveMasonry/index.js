@@ -58,12 +58,14 @@ class MasonryResponsive extends React.Component {
   }
 
   render() {
+    const {columnsCount} = this.state
+    const {children, className, style} = this.props
     return (
-      <div ref={this.handleRef} className={this.props.className}>
-        {React.Children.map(this.props.children, (child, index) =>
+      <div ref={this.handleRef} className={className} style={style}>
+        {React.Children.map(children, (child, index) =>
           React.cloneElement(child, {
             key: index,
-            columnsCount: this.state.columnsCount,
+            columnsCount: columnsCount,
           })
         )}
       </div>
@@ -78,6 +80,7 @@ MasonryResponsive.propTypes = {
   ]).isRequired,
   columnsCountBreakPoints: PropTypes.object,
   className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 MasonryResponsive.defaultProps = {
@@ -87,6 +90,7 @@ MasonryResponsive.defaultProps = {
     900: 3,
   },
   className: null,
+  style: null,
 }
 
 export default MasonryResponsive

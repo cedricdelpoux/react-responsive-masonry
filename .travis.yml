@@ -1,3 +1,14 @@
+sudo: false
+
 language: node_js
-node_js:
-  - "lts/*"
+node_js: 8
+
+before_install:
+  - npm install codecov
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/.bin/codecov
+
+branches:
+  only:
+    - master
