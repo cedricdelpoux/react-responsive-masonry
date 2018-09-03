@@ -8,6 +8,7 @@ class MasonryResponsive extends React.Component {
     super(props)
 
     this.state = {
+      isCalculated: false,
       columnsCount: DEFAULT_COLUMNS_COUNT,
     }
 
@@ -45,7 +46,7 @@ class MasonryResponsive extends React.Component {
     })
 
     if (columnsCount && columnsCount !== this.state.columnsCount) {
-      this.setState({columnsCount})
+      this.setState({columnsCount, isCalculated: true})
     }
   }
 
@@ -58,16 +59,18 @@ class MasonryResponsive extends React.Component {
   }
 
   render() {
-    const {columnsCount} = this.state
+    const {columnsCount, isCalculated} = this.state
     const {children, className, style} = this.props
     return (
       <div ref={this.handleRef} className={className} style={style}>
-        {React.Children.map(children, (child, index) =>
-          React.cloneElement(child, {
-            key: index,
-            columnsCount: columnsCount,
-          })
-        )}
+        {isCalculated &&
+          React.Children.map(children, (child, index) =>
+            React.cloneElement(child, {
+              key: index,
+              columnsCount: columnsCount,
+            })
+          )}
+        {!isCalculated && <div>Content</div>}
       </div>
     )
   }
