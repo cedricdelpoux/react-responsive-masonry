@@ -15,8 +15,8 @@ const styles = {
     flexDirection: "column",
     justifyContent: "flex-start",
     alignContent: "stretch",
-    flexGrow: 1,
-    flexBasis: 0,
+    flex: 1,
+    width: 0,
   },
 }
 
