@@ -1,24 +1,5 @@
-import React from "react"
 import PropTypes from "prop-types"
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignContent: "stretch",
-    boxSizing: "border-box",
-    width: "100%",
-  },
-  column: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignContent: "stretch",
-    flex: 1,
-    width: 0,
-  },
-}
+import React from "react"
 
 class Masonry extends React.Component {
   getColumns() {
@@ -35,15 +16,27 @@ class Masonry extends React.Component {
   renderColumn(column) {
     const {gutter} = this.props
     return column.map((item, i) => (
-      <div key={i} style={{margin: gutter}}>
+      <div key={i} style={{marginTop: i > 0 ? gutter : undefined}}>
         {item}
       </div>
     ))
   }
 
   renderColumns() {
+    const {gutter} = this.props
     return this.getColumns().map((column, i) => (
-      <div key={i} style={styles.column}>
+      <div
+        key={i}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignContent: "stretch",
+          flex: 1,
+          width: 0,
+          marginLeft: i > 0 ? gutter : undefined,
+        }}
+      >
         {this.renderColumn(column)}
       </div>
     ))
@@ -52,7 +45,18 @@ class Masonry extends React.Component {
   render() {
     const {className, style} = this.props
     return (
-      <div style={{...styles.container, ...style}} className={className}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignContent: "stretch",
+          boxSizing: "border-box",
+          width: "100%",
+          ...style,
+        }}
+        className={className}
+      >
         {this.renderColumns()}
       </div>
     )

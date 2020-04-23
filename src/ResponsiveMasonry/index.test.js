@@ -1,9 +1,13 @@
-import {mount, shallow} from "enzyme"
-import React from "react"
-import {renderToString} from "react-dom/server"
+/*global Event, window*/
 
+import { configure, mount } from "enzyme"
+import Adapter from 'enzyme-adapter-react-16'
+import React from "react"
+import { renderToString } from "react-dom/server"
 import Masonry from "../"
 import ResponsiveMasonry from "./"
+
+configure({ adapter: new Adapter() });
 
 const columnsCountBreakPoints = {350: 1, 750: 2, 900: 3}
 const content = "Content"
