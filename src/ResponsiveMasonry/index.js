@@ -1,76 +1,67 @@
-import React from "react"
 import PropTypes from "prop-types"
+import React, {useCallback, useEffect, useMemo, useState} from "react"
 
 const DEFAULT_COLUMNS_COUNT = 1
 
-class MasonryResponsive extends React.Component {
-  constructor(props) {
-    super(props)
+const getWindowWidth = () => {
+  if (typeof window === "undefined") return null
 
-    this.state = {
-      columnsCount: DEFAULT_COLUMNS_COUNT,
+  return window.innerWidth
+}
+
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(getWindowWidth())
+  const hasWindow = typeof window !== "undefined"
+
+  const handleResize = useCallback(() => {
+    setWidth(getWindowWidth())
+  }, [])
+
+  useEffect(() => {
+    if (hasWindow) {
+      window.addEventListener("resize", handleResize)
+      return () => window.removeEventListener("resize", handleResize)
     }
+  }, [hasWindow, handleResize])
 
-    this.handleResize = this.handleResize.bind(this)
-    this.handleRef = this.handleRef.bind(this)
-  }
+  return width
+}
 
-  componentDidMount() {
-    this.updateColumnsCount()
-    window.addEventListener("resize", this.handleResize) // eslint-disable-line
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleResize) // eslint-disable-line
-  }
-
-  getSortedBreakPoints() {
-    const breakPoints = Object.keys(this.props.columnsCountBreakPoints)
-    return breakPoints.sort((a, b) => a - b)
-  }
-
-  updateColumnsCount() {
-    const {columnsCountBreakPoints} = this.props
-    const containerWidth = this.container.offsetWidth
-    const breakPoints = this.getSortedBreakPoints()
-    let columnsCount =
+const MasonryResponsive = ({
+  columnsCountBreakPoints,
+  children,
+  className,
+  style,
+}) => {
+  const windowWidth = useWindowWidth()
+  const columnsCount = useMemo(() => {
+    const breakPoints = Object.keys(columnsCountBreakPoints).sort(
+      (a, b) => a - b
+    )
+    let count =
       breakPoints.length > 0
         ? columnsCountBreakPoints[breakPoints[0]]
         : DEFAULT_COLUMNS_COUNT
 
-    breakPoints.forEach(breakPoint => {
-      if (breakPoint < containerWidth) {
-        columnsCount = columnsCountBreakPoints[breakPoint]
+    breakPoints.forEach((breakPoint) => {
+      if (breakPoint < windowWidth) {
+        count = columnsCountBreakPoints[breakPoint]
       }
     })
 
-    if (columnsCount && columnsCount !== this.state.columnsCount) {
-      this.setState({columnsCount})
-    }
-  }
+    return count
+  }, [windowWidth, columnsCountBreakPoints])
 
-  handleResize() {
-    this.updateColumnsCount()
-  }
-
-  handleRef(ref) {
-    if (!this.container) this.container = ref
-  }
-
-  render() {
-    const {columnsCount} = this.state
-    const {children, className, style} = this.props
-    return (
-      <div ref={this.handleRef} className={className} style={style}>
-        {React.Children.map(children, (child, index) =>
-          React.cloneElement(child, {
-            key: index,
-            columnsCount: columnsCount,
-          })
-        )}
-      </div>
-    )
-  }
+  return (
+    <div className={className} style={style}>
+      {React.Children.map(children, (child, index) =>
+        React.cloneElement(child, {
+          key: index,
+          columnsCount: columnsCount,
+        })
+      )}
+    </div>
+  )
 }
 
 MasonryResponsive.propTypes = {
