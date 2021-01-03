@@ -1,0 +1,6 @@
+*.log
+.cache
+public
+node_modules
+
+
