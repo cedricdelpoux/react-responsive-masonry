@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "author": {
     "name": "Cédric Delpoux",
-    "email": "xuopled@gmail.com"
+    "email": "cedric.delpoux@gmail.com"
   },
   "description": "React responsive masonry component built with css flexbox",
   "files": [
@@ -11,7 +11,7 @@
     "lib",
     "umd"
   ],
-  "homepage": "https://github.com/xuopled/react-responsive-masonry#readme",
+  "homepage": "https://github.com/cedricdelpoux/react-responsive-masonry#readme",
   "keywords": [
     "react",
     "masonry",
@@ -24,7 +24,7 @@
   "module": "es/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xuopled/react-responsive-masonry.git"
+    "url": "git+https://github.com/cedricdelpoux/react-responsive-masonry.git"
   },
   "scripts": {
     "build": "nwb build-react-component",
