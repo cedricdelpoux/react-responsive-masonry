@@ -3,7 +3,8 @@
 [![npm package][npm-badge]][npm] [![Travis][build-badge]][build]
 [![Codecov][codecov-badge]][codecov] ![Module formats][module-formats]
 
-A lightweight responsive React pie chart component using only SVG
+A lightweight React responsive masonry component built with css flexbox.
+
 
 ## Getting started
 
