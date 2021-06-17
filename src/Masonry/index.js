@@ -7,8 +7,9 @@ class Masonry extends React.Component {
     const columns = Array.from({length: columnsCount}, () => [])
 
     React.Children.forEach(children, (child, index) => {
-      if(typeof child !== "number" && !child) return null
-      columns[index % columnsCount].push(child)
+      if (child && React.isValidElement(child)) {
+        columns[index % columnsCount].push(child)
+      }
     })
 
     return columns
