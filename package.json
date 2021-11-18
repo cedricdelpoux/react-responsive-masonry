@@ -31,11 +31,11 @@
     "clean": "nwb clean-module && nwb clean-demo",
     "deploy": "gh-pages -d demo/dist",
     "lint": "eslint src demo/src",
-    "precommit": "lint-staged",
     "prepublish": "yarn run clean && yarn run build",
     "start": "nwb serve-react-demo --port 1190",
     "test": "jest --colors --no-cache",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "yarn test -- --watch",
+    "prepare": "husky install"
   },
   "dependencies": {},
   "devDependencies": {
@@ -54,8 +54,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.0",
     "gh-pages": "^3.2.3",
-    "html-loader": "^3.0.1",
-    "husky": "^4.2.5",
+    "husky": "^7.0.0",
     "jest": "^27.3.1",
     "jest-css-modules": "^2.1.0",
     "lint-staged": "^12.0.2",
