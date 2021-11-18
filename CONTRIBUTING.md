@@ -10,7 +10,7 @@
 
 ## Demo Development Server
 
-* `npm run demo:start` will run a development server with the component's demo app at [http://localhost:1190](http://localhost:1190) with hot module reloading.
+* `npm run start` will run a development server with the component's demo app at [http://localhost:1190](http://localhost:1190) with hot module reloading.
 
 ## Linting
 
