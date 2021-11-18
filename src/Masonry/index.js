@@ -15,15 +15,6 @@ class Masonry extends React.Component {
     return columns
   }
 
-  renderColumn(column) {
-    const {gutter} = this.props
-    return column.map((item, i) => (
-      <div key={i} style={{marginTop: i > 0 ? gutter : undefined}}>
-        {item}
-      </div>
-    ))
-  }
-
   renderColumns() {
     const {gutter} = this.props
     return this.getColumns().map((column, i) => (
@@ -36,10 +27,10 @@ class Masonry extends React.Component {
           alignContent: "stretch",
           flex: 1,
           width: 0,
-          marginLeft: i > 0 ? gutter : undefined,
+          gap: gutter,
         }}
       >
-        {this.renderColumn(column)}
+        {column.map((item) => item)}
       </div>
     ))
   }
@@ -55,6 +46,7 @@ class Masonry extends React.Component {
           alignContent: "stretch",
           boxSizing: "border-box",
           width: "100%",
+          gap: this.props.gutter,
           ...style,
         }}
         className={className}
