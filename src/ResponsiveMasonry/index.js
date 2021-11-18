@@ -3,26 +3,30 @@ import React, {useCallback, useEffect, useMemo, useState} from "react"
 
 const DEFAULT_COLUMNS_COUNT = 1
 
-const getWindowWidth = () => {
-  if (typeof window === "undefined") return null
-
-  return window.innerWidth
+const useHasMounted = () => {
+  const [hasMounted, setHasMounted] = useState(false)
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+  return hasMounted
 }
 
 const useWindowWidth = () => {
-  const [width, setWidth] = useState(getWindowWidth())
-  const hasWindow = typeof window !== "undefined"
+  const hasMounted = useHasMounted()
+  const [width, setWidth] = useState(0)
 
   const handleResize = useCallback(() => {
-    setWidth(getWindowWidth())
-  }, [])
+    if (!hasMounted) return
+    setWidth(window.innerWidth)
+  }, [hasMounted])
 
   useEffect(() => {
-    if (hasWindow) {
+    if (hasMounted) {
       window.addEventListener("resize", handleResize)
+      handleResize()
       return () => window.removeEventListener("resize", handleResize)
     }
-  }, [hasWindow, handleResize])
+  }, [hasMounted, handleResize])
 
   return width
 }
