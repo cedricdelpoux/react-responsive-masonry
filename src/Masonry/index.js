@@ -36,7 +36,7 @@ class Masonry extends React.Component {
   }
 
   render() {
-    const {className, style} = this.props
+    const {gutter, className, style} = this.props
     return (
       <div
         style={{
@@ -46,7 +46,7 @@ class Masonry extends React.Component {
           alignContent: "stretch",
           boxSizing: "border-box",
           width: "100%",
-          gap: this.props.gutter,
+          gap: gutter,
           ...style,
         }}
         className={className}
