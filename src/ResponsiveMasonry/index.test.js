@@ -2,6 +2,7 @@ import {configure, mount} from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
 import React from "react"
 import {renderToString} from "react-dom/server"
+import {act} from "react-dom/test-utils"
 
 import Masonry from "../"
 import ResponsiveMasonry from "./"
@@ -30,6 +31,9 @@ describe("ResponsiveMasonry", () => {
 
   it("call resize event", () => {
     var resizeEvent = new Event("resize")
-    window.dispatchEvent(resizeEvent)
+
+    act(() => {
+      window.dispatchEvent(resizeEvent)
+    })
   })
 })
