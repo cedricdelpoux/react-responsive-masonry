@@ -81,10 +81,10 @@ class MyWrapper extends Component {
 
 ### Mansonry component
 
-| Name         | PropType | Description                   | Default |
-| ------------ | -------- | ----------------------------- | ------- |
-| columnsCount | Number   | Injected by ResponsiveMasonry | 3       |
-| gutter       | String   | Margin surrounding each item  | "0"     |
+| Name         | PropType | Description                                           | Default |
+| ------------ | -------- | ----------------------------------------------------- | ------- |
+| columnsCount | Number   | Injected by ResponsiveMasonry                         | 3       |
+| gutter       | String   | Margin surrounding each item e.g. "10px" or "1.5rem"  | "0"     |
 
 ### ResponsiveMasonry component
 
