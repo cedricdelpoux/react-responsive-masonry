@@ -1,11 +1,11 @@
 import PropTypes from "prop-types"
-import React, {useCallback, useEffect, useMemo, useState} from "react"
+import React, {useCallback, useLayoutEffect, useMemo, useState} from "react"
 
 const DEFAULT_COLUMNS_COUNT = 1
 
 const useHasMounted = () => {
   const [hasMounted, setHasMounted] = useState(false)
-  useEffect(() => {
+  useLayoutEffect(() => {
     setHasMounted(true)
   }, [])
   return hasMounted
@@ -20,7 +20,7 @@ const useWindowWidth = () => {
     setWidth(window.innerWidth)
   }, [hasMounted])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (hasMounted) {
       window.addEventListener("resize", handleResize)
       handleResize()
