@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-masonry",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "author": {
     "name": "Cédric Delpoux",
     "email": "cedric.delpoux@gmail.com"
@@ -69,9 +69,5 @@
     "react-demo-page": "^0.3.6",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
   }
 }
