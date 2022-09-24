@@ -1,11 +1,20 @@
 import PropTypes from "prop-types"
-import React, {useCallback, useEffect, useMemo, useState} from "react"
+import React, {
+  useCallback,
+  useLayoutEffect,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 
 const DEFAULT_COLUMNS_COUNT = 1
 
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect
+
 const useHasMounted = () => {
   const [hasMounted, setHasMounted] = useState(false)
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setHasMounted(true)
   }, [])
   return hasMounted
@@ -20,7 +29,7 @@ const useWindowWidth = () => {
     setWidth(window.innerWidth)
   }, [hasMounted])
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (hasMounted) {
       window.addEventListener("resize", handleResize)
       handleResize()
