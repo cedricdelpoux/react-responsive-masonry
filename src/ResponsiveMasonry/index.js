@@ -41,10 +41,14 @@ const useWindowWidth = () => {
 }
 
 const MasonryResponsive = ({
-  columnsCountBreakPoints,
+  columnsCountBreakPoints = {
+    350: 1,
+    750: 2,
+    900: 3,
+  },
   children,
-  className,
-  style,
+  className = null,
+  style = null,
 }) => {
   const windowWidth = useWindowWidth()
   const columnsCount = useMemo(() => {
@@ -85,16 +89,6 @@ MasonryResponsive.propTypes = {
   columnsCountBreakPoints: PropTypes.object,
   className: PropTypes.string,
   style: PropTypes.object,
-}
-
-MasonryResponsive.defaultProps = {
-  columnsCountBreakPoints: {
-    350: 1,
-    750: 2,
-    900: 3,
-  },
-  className: null,
-  style: null,
 }
 
 export default MasonryResponsive
