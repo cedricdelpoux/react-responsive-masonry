@@ -5,13 +5,13 @@ class Masonry extends React.Component {
   getColumns() {
     const {children, columnsCount} = this.props
     const columns = Array.from({length: columnsCount}, () => [])
-
-    React.Children.forEach(children, (child, index) => {
+    let validIndex = 0
+    React.Children.forEach(children, (child) => {
       if (child && React.isValidElement(child)) {
-        columns[index % columnsCount].push(child)
+        columns[validIndex % columnsCount].push(child)
+        validIndex++
       }
     })
-
     return columns
   }
 
