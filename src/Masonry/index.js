@@ -25,13 +25,16 @@ class Masonry extends React.Component {
           heightColumns[lessHeightColumn] += child.props.style.height
           // push child to less height column
           columns[lessHeightColumn].push(child)
+          
         }
       })
     } else {
-      React.Children.forEach(children, (child, index) => {
+      let validIndex = 0
+      React.Children.forEach(children, (child) => {
         if (child && React.isValidElement(child)) {
           // push child to less height column
-          columns[index % columnsCount].push(child)
+          columns[validIndex % columnsCount].push(child)
+          validIndex++
         }
       })
     }
