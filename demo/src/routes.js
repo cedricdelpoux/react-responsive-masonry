@@ -1,7 +1,11 @@
 import React from "react"
 
 import readmeHtml from "../../README.md"
-import {ExampleMasonry, ExampleResponsiveMasonry} from "./Examples"
+import {
+  ExampleMasonry,
+  ExampleResponsiveMasonry,
+  ExampleMasonryAlign,
+} from "./Examples"
 
 const routes = [
   {
@@ -11,6 +15,7 @@ const routes = [
       <div>
         <ExampleMasonry />
         <ExampleResponsiveMasonry />
+        <ExampleMasonryAlign />
       </div>
     ),
     label: "Demo",

@@ -3,15 +3,42 @@ import React from "react"
 
 class Masonry extends React.Component {
   getColumns() {
-    const {children, columnsCount} = this.props
+    const {children, columnsCount, alignColumns} = this.props
     const columns = Array.from({length: columnsCount}, () => [])
-    let validIndex = 0
-    React.Children.forEach(children, (child) => {
-      if (child && React.isValidElement(child)) {
-        columns[validIndex % columnsCount].push(child)
-        validIndex++
-      }
-    })
+
+    // align columns
+    if (alignColumns) {
+      const heightColumns = Array.from({length: columnsCount}, () => 0)
+      React.Children.forEach(children, (child) => {
+        if (child && React.isValidElement(child)) {
+          if (typeof child.props.style.height === "undefined") {
+            throw new Error("Masonry: Please add height to all children")
+          }
+          if (typeof child.props.style.height !== "number") {
+            throw new Error("Masonry: Please add height in number format")
+          }
+          // find the less height column value from heightColumns
+          const lessHeightColumn = heightColumns.indexOf(
+            Math.min(...heightColumns)
+          )
+          // add height value to lee height column
+          heightColumns[lessHeightColumn] += child.props.style.height
+          // push child to less height column
+          columns[lessHeightColumn].push(child)
+          
+        }
+      })
+    } else {
+      let validIndex = 0
+      React.Children.forEach(children, (child) => {
+        if (child && React.isValidElement(child)) {
+          // push child to less height column
+          columns[validIndex % columnsCount].push(child)
+          validIndex++
+        }
+      })
+    }
+
     return columns
   }
 
@@ -64,6 +91,7 @@ Masonry.propTypes = {
   ]).isRequired,
   columnsCount: PropTypes.number,
   gutter: PropTypes.string,
+  alignColumns: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
 }
@@ -71,6 +99,7 @@ Masonry.propTypes = {
 Masonry.defaultProps = {
   columnsCount: 3,
   gutter: "0",
+  alignColumns: false,
   className: null,
   style: {},
 }
