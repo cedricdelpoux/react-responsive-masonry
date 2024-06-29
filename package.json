@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-masonry",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "author": {
     "name": "Cédric Delpoux",
     "email": "cedric.delpoux@gmail.com"
@@ -27,7 +27,7 @@
     "url": "git+https://github.com/cedricdelpoux/react-responsive-masonry.git"
   },
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "deploy": "gh-pages -d demo/dist",
     "lint": "eslint src demo/src",
@@ -37,7 +37,9 @@
     "test:watch": "yarn test -- --watch",
     "prepare": "husky install"
   },
-  "dependencies": {},
+  "dependencies": {
+    "caniuse-lite": "^1.0.30001638"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
