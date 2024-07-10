@@ -50,7 +50,9 @@ class Masonry extends React.Component {
         const ref = React.createRef()
         childRefs.push(ref)
         columns[validIndex % columnsCount].push(
-          <div ref={ref}>{child}</div>
+          <div key={validIndex} ref={ref}>
+            {child}
+          </div>
           // React.cloneElement(child, {ref}) // cannot attach refs to functional components without forwardRef
         )
         validIndex++
