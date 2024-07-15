@@ -13,8 +13,18 @@ const MasonryFixture = (
   </Masonry>
 )
 
+const CustomTagsFixture = (
+  <Masonry containerTag="ul" itemTag="li">
+    <div>{content}</div>
+  </Masonry>
+)
+
 describe("Masonry", () => {
   it("renders", () => {
     mount(MasonryFixture)
+  })
+
+  it("renders with custom tags", () => {
+    mount(CustomTagsFixture)
   })
 })
