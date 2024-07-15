@@ -54,8 +54,6 @@ describe("ResponsiveMasonry with custom tags", () => {
   it("should render on server", () => {
     const result = renderToString(ResponsiveCustomTagsFixture)
 
-    console.log(result)
-
     expect(result.match(RegExp(content))).not.toBeNull()
     expect(result.match(RegExp("<ul"))).not.toBeNull()
     expect(result.match(RegExp("<li"))).not.toBeNull()
