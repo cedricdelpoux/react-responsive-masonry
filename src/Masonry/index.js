@@ -16,30 +16,35 @@ class Masonry extends React.Component {
   }
 
   renderColumns() {
-    const {gutter} = this.props
-    return this.getColumns().map((column, i) => (
-      <div
-        key={i}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignContent: "stretch",
-          flex: 1,
-          width: 0,
-          gap: gutter,
-        }}
-      >
-        {column.map((item) => item)}
-      </div>
-    ))
+    const {gutter, itemTag, itemStyle} = this.props
+    return this.getColumns().map((column, i) =>
+      React.createElement(
+        itemTag,
+        {
+          key: i,
+          style: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignContent: "stretch",
+            flex: 1,
+            width: 0,
+            gap: gutter,
+            ...itemStyle,
+          },
+        },
+        column.map((item) => item)
+      )
+    )
   }
 
   render() {
-    const {gutter, className, style} = this.props
-    return (
-      <div
-        style={{
+    const {gutter, className, style, containerTag} = this.props
+
+    return React.createElement(
+      containerTag,
+      {
+        style: {
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -48,11 +53,10 @@ class Masonry extends React.Component {
           width: "100%",
           gap: gutter,
           ...style,
-        }}
-        className={className}
-      >
-        {this.renderColumns()}
-      </div>
+        },
+        className,
+      },
+      this.renderColumns()
     )
   }
 }
@@ -66,6 +70,9 @@ Masonry.propTypes = {
   gutter: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object,
+  containerTag: PropTypes.string,
+  itemTag: PropTypes.string,
+  itemStyle: PropTypes.object,
 }
 
 Masonry.defaultProps = {
@@ -73,6 +80,9 @@ Masonry.defaultProps = {
   gutter: "0",
   className: null,
   style: {},
+  containerTag: "div",
+  itemTag: "div",
+  itemStyle: {},
 }
 
 export default Masonry
