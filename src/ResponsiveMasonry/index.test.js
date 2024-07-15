@@ -18,6 +18,14 @@ const ResponsiveFixture = (
     </Masonry>
   </ResponsiveMasonry>
 )
+const ResponsiveCustomTagsFixture = (
+  <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints}>
+    <Masonry containerTag="ul" itemTag="li">
+      <div>{content}</div>
+      <div>{content}</div>
+    </Masonry>
+  </ResponsiveMasonry>
+)
 
 describe("ResponsiveMasonry", () => {
   it("renders", () => {
@@ -27,6 +35,30 @@ describe("ResponsiveMasonry", () => {
   it("should render on server", () => {
     const result = renderToString(ResponsiveFixture)
     expect(result.match(RegExp(content))).not.toBeNull()
+  })
+
+  it("call resize event", () => {
+    var resizeEvent = new Event("resize")
+
+    act(() => {
+      window.dispatchEvent(resizeEvent)
+    })
+  })
+})
+
+describe("ResponsiveMasonry with custom tags", () => {
+  it("renders", () => {
+    mount(ResponsiveCustomTagsFixture)
+  })
+
+  it("should render on server", () => {
+    const result = renderToString(ResponsiveCustomTagsFixture)
+
+    console.log(result)
+
+    expect(result.match(RegExp(content))).not.toBeNull()
+    expect(result.match(RegExp("<ul"))).not.toBeNull()
+    expect(result.match(RegExp("<li"))).not.toBeNull()
   })
 
   it("call resize event", () => {
