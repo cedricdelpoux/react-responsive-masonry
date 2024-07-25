@@ -85,6 +85,9 @@ class MyWrapper extends Component {
 | ------------ | -------- | ----------------------------------------------------- | ------- |
 | columnsCount | Number   | Injected by ResponsiveMasonry                         | 3       |
 | gutter       | String   | Margin surrounding each item e.g. "10px" or "1.5rem"  | "0"     |
+| containerTag | String   | Tag name of the container element                     | "div"   |
+| itemTag      | String   | Tag name of the item element                          | "div"   |
+| itemStyle    | Object   | Style object applied to each item                     | {}      |
 
 ### ResponsiveMasonry component
 
