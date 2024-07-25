@@ -1,3 +1,7 @@
+# 2.3.0 - 2024-07-25
+
+-   Added: allow custom masonry and item HTML tags by @zvonimirr
+
 # 2.2.0 - 2024-02-19
 
 -   Added: add inner width as default by @artemijkurganov
