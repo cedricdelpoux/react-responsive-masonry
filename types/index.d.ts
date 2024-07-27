@@ -1,6 +1,6 @@
-import React from "react"
-
 declare module "react-responsive-masonry" {
+  import React from "react"
+
   /**
    * List of props for the Masonry component.
    *
