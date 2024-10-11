@@ -3,7 +3,7 @@ import React from "react"
 
 class Masonry extends React.Component {
   componentDidUpdate() {
-    if (!this.state.hasDistributed) this.distributeChildren()
+    if (!this.state.hasDistributed && !this.props.sequential) this.distributeChildren()
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -129,6 +129,7 @@ Masonry.propTypes = {
   containerTag: PropTypes.string,
   itemTag: PropTypes.string,
   itemStyle: PropTypes.object,
+  sequential: PropTypes.bool,
 }
 
 Masonry.defaultProps = {
@@ -139,6 +140,7 @@ Masonry.defaultProps = {
   containerTag: "div",
   itemTag: "div",
   itemStyle: {},
+  sequential: false,
 }
 
 export default Masonry
