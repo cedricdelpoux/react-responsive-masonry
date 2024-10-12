@@ -1,6 +1,7 @@
 # 2.4.0 - 2024-10-12
 
 -   Added: add `sequential` prop to distribute children by height sequentially by @yangchristina
+-   Added: add typescript types by @zvonimirr
 
 # 2.3.0 - 2024-07-25
 
