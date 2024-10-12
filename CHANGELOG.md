@@ -1,3 +1,7 @@
+# 2.4.0 - 2024-10-12
+
+-   Added: add `sequential` prop to distribute children by height sequentially by @yangchristina
+
 # 2.3.0 - 2024-07-25
 
 -   Added: allow custom masonry and item HTML tags by @zvonimirr
