@@ -39,9 +39,9 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
-    "@babel/preset-react": "^7.16.0",
+    "@babel/core": "^7.25.8",
+    "@babel/preset-env": "^7.25.8",
+    "@babel/preset-react": "^7.25.7",
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
     "babel-eslint": "^10.1.0",
@@ -53,7 +53,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.2.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react": "^7.37.1",
     "gh-pages": "^3.2.3",
     "html-loader": "^1.1.0",
     "husky": "^7.0.0",
