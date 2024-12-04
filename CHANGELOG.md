@@ -1,3 +1,7 @@
+# 2.5.0 - 2024-12-04
+
+-   Reverted: add `sequential` prop to distribute children by height sequentially by @yangchristina
+
 # 2.4.0 - 2024-10-12
 
 -   Added: add `sequential` prop to distribute children by height sequentially by @yangchristina

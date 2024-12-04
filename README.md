@@ -5,7 +5,6 @@
 
 A lightweight React responsive masonry component built with css flexbox.
 
-
 ## Getting started
 
 [![react-responsive-masonry](https://nodei.co/npm/react-responsive-masonry.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-responsive-masonry/)
@@ -81,14 +80,13 @@ class MyWrapper extends Component {
 
 ### Mansonry component
 
-| Name         | PropType | Description                                            | Default |
-| ------------ | -------- | ------------------------------------------------------ | ------- |
-| columnsCount | Number   | Injected by ResponsiveMasonry                          | 3       |
-| gutter       | String   | Margin surrounding each item e.g. "10px" or "1.5rem"   | "0"     |
-| containerTag | String   | Tag name of the container element                      | "div"   |
-| itemTag      | String   | Tag name of the item element                           | "div"   |
-| itemStyle    | Object   | Style object applied to each item                      | {}      |
-| sequential   | Boolean  | If true, items are placed in the order they are passed | false   |
+| Name         | PropType | Description                                          | Default |
+| ------------ | -------- | ---------------------------------------------------- | ------- |
+| columnsCount | Number   | Injected by ResponsiveMasonry                        | 3       |
+| gutter       | String   | Margin surrounding each item e.g. "10px" or "1.5rem" | "0"     |
+| containerTag | String   | Tag name of the container element                    | "div"   |
+| itemTag      | String   | Tag name of the item element                         | "div"   |
+| itemStyle    | Object   | Style object applied to each item                    | {}      |
 
 ### ResponsiveMasonry component
 
@@ -98,9 +96,9 @@ class MyWrapper extends Component {
 
 ## Contributing
 
-* ⇄ Pull/Merge requests and ★ Stars are always welcome.
-* For bugs and feature requests, please [create an issue][github-issue].
-* Pull requests must be accompanied by passing automated tests (`npm test`).
+-   ⇄ Pull/Merge requests and ★ Stars are always welcome.
+-   For bugs and feature requests, please [create an issue][github-issue].
+-   Pull requests must be accompanied by passing automated tests (`npm test`).
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines
 
