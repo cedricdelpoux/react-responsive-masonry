@@ -80,13 +80,14 @@ class MyWrapper extends Component {
 
 ### Mansonry component
 
-| Name         | PropType | Description                                          | Default |
-| ------------ | -------- | ---------------------------------------------------- | ------- |
-| columnsCount | Number   | Injected by ResponsiveMasonry                        | 3       |
-| gutter       | String   | Margin surrounding each item e.g. "10px" or "1.5rem" | "0"     |
-| containerTag | String   | Tag name of the container element                    | "div"   |
-| itemTag      | String   | Tag name of the item element                         | "div"   |
-| itemStyle    | Object   | Style object applied to each item                    | {}      |
+| Name         | PropType | Description                                            | Default |
+| ------------ | -------- | ------------------------------------------------------ | ------- |
+| columnsCount | Number   | Injected by ResponsiveMasonry                          | 3       |
+| gutter       | String   | Margin surrounding each item e.g. "10px" or "1.5rem"   | "0"     |
+| containerTag | String   | Tag name of the container element                      | "div"   |
+| itemTag      | String   | Tag name of the item element                           | "div"   |
+| itemStyle    | Object   | Style object applied to each item                      | {}      |
+| sequential   | Boolean  | If true, items are placed in the order they are passed | false   |
 
 ### ResponsiveMasonry component
 
