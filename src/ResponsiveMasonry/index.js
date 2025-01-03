@@ -9,7 +9,7 @@ import React, {
 import PropTypes from "prop-types"
 
 const DEFAULT_COLUMNS_COUNT = 1
-const DEFAULT_GUTTER = '10px'
+const DEFAULT_GUTTER = "10px"
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
@@ -53,46 +53,41 @@ const MasonryResponsive = ({
   gutterBreakPoints = {
     350: DEFAULT_GUTTER,
     750: DEFAULT_GUTTER,
-    900: DEFAULT_GUTTER
+    900: DEFAULT_GUTTER,
   },
   children,
   className = null,
   style = null,
 }) => {
   const windowWidth = useWindowWidth()
-  const columnsCount = useMemo(() => {
-    const breakPoints = Object.keys(columnsCountBreakPoints).sort(
-      (a, b) => a - b
-    )
-    let count =
-      breakPoints.length > 0
-        ? columnsCountBreakPoints[breakPoints[0]]
-        : DEFAULT_COLUMNS_COUNT
 
-    breakPoints.forEach((breakPoint) => {
-      if (breakPoint < windowWidth) {
-        count = columnsCountBreakPoints[breakPoint]
-      }
-    })
+  const getResponsiveValue = useCallback(
+    (breakPoints, defaultValue) => {
+      const sortedBreakPoints = Object.keys(breakPoints).sort((a, b) => a - b)
+      let value =
+        sortedBreakPoints.length > 0
+          ? breakPoints[sortedBreakPoints[0]]
+          : defaultValue
 
-    return count
-  }, [windowWidth, columnsCountBreakPoints])
+      sortedBreakPoints.forEach((breakPoint) => {
+        if (breakPoint < windowWidth) {
+          value = breakPoints[breakPoint]
+        }
+      })
 
-  const gutter = useMemo(() => {
-    const breakpoints = Object.keys(gutterBreakPoints).sort((a, b) => a - b);
+      return value
+    },
+    [windowWidth]
+  )
 
-    let count = breakpoints.length > 0
-      ? gutterBreakPoints[breakpoints[0]]
-      : DEFAULT_GUTTER
-
-    breakpoints.forEach((breakPoint) => {
-      if (breakPoint < windowWidth) {
-        count = gutterBreakPoints[breakPoint]
-      }
-    })
-
-    return count
-  })
+  const columnsCount = useMemo(
+    () => getResponsiveValue(columnsCountBreakPoints, DEFAULT_COLUMNS_COUNT),
+    [getResponsiveValue, columnsCountBreakPoints]
+  )
+  const gutter = useMemo(
+    () => getResponsiveValue(gutterBreakPoints, DEFAULT_GUTTER),
+    [getResponsiveValue, gutterBreakPoints]
+  )
 
   return (
     <div className={className} style={style}>
