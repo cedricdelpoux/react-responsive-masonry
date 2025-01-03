@@ -9,6 +9,7 @@ import React, {
 import PropTypes from "prop-types"
 
 const DEFAULT_COLUMNS_COUNT = 1
+const DEFAULT_GUTTER = '10px'
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
@@ -49,6 +50,11 @@ const MasonryResponsive = ({
     750: 2,
     900: 3,
   },
+  gutterBreakPoints = {
+    350: DEFAULT_GUTTER,
+    750: DEFAULT_GUTTER,
+    900: DEFAULT_GUTTER
+  },
   children,
   className = null,
   style = null,
@@ -72,12 +78,29 @@ const MasonryResponsive = ({
     return count
   }, [windowWidth, columnsCountBreakPoints])
 
+  const gutter = useMemo(() => {
+    const breakpoints = Object.keys(gutterBreakPoints).sort((a, b) => a - b);
+
+    let count = breakpoints.length > 0
+      ? gutterBreakPoints[breakpoints[0]]
+      : DEFAULT_GUTTER
+
+    breakpoints.forEach((breakPoint) => {
+      if (breakPoint < windowWidth) {
+        count = gutterBreakPoints[breakPoint]
+      }
+    })
+
+    return count
+  })
+
   return (
     <div className={className} style={style}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
           key: index,
-          columnsCount: columnsCount,
+          columnsCount,
+          gutter,
         })
       )}
     </div>
