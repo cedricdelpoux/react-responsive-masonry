@@ -24,7 +24,10 @@ export default class ExampleResponsiveMasonry extends React.Component {
     return (
       <div>
         <Html html={html} color="#44B39D" />
-        <ResponsiveMasonry columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}>
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+          gutterBreakPoints={{350: "5px", 750: "15px", 900: "25px"}}
+        >
           <Masonry columnsCount={3} gutter="10px">
             {images.map((image, i) =>
               image ? (
