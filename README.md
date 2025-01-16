@@ -92,10 +92,10 @@ class MyWrapper extends Component {
 
 ### ResponsiveMasonry component
 
-| Name                    | PropType | Description                                                                    | Default                  |
-| ----------------------- | -------- | ------------------------------------------------------------------------------ | ------------------------ |
-| columnsCountBreakPoints | Object   | Keys are breakpoints in px, values are the columns number                      | {350: 1, 750: 2, 900: 3} |
-| gutterBreakpoints       | Object   | Keys are breakpoints in px, values are the gutter value in any valid CSS value |                          |
+| Name                    | PropType | Description                                                                              | Default                  |
+| ----------------------- | -------- | ---------------------------------------------------------------------------------------- | ------------------------ |
+| columnsCountBreakPoints | Object   | Keys are breakpoints in px, values are the columns number                                | {350: 1, 750: 2, 900: 3} |
+| gutterBreakpoints       | Object   | Keys are breakpoints in px, values are the gutter value in any valid CSS value for 'gap' |                          |
 
 ## Contributing
 
