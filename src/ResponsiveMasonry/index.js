@@ -50,11 +50,7 @@ const MasonryResponsive = ({
     750: 2,
     900: 3,
   },
-  gutterBreakPoints = {
-    350: DEFAULT_GUTTER,
-    750: DEFAULT_GUTTER,
-    900: DEFAULT_GUTTER,
-  },
+  gutterBreakPoints,
   children,
   className = null,
   style = null,
