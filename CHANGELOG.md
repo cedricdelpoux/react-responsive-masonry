@@ -1,3 +1,7 @@
+# 2.7.0 - 2025-01-20
+
+-   add responsive gutters by @kriskuiper
+
 # 2.6.0 - 2024-12-07
 
 -   Added: add `sequential` prop to distribute children by height sequentially by @yangchristina
