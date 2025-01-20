@@ -41,12 +41,13 @@ Otherwise, you only need to use the `Masonry` component.
 import React from "react"
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
-// The number of columns change by resizing the window
+// The number of columns and the gutter change by resizing the window
 class MyWrapper extends React.Component {
     render() {
         return (
             <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+                gutterBreakpoints={{350: "12px", 750: "16px", 900: "24px"}}
             >
                 <Masonry>
                     <ChildA />
@@ -60,7 +61,7 @@ class MyWrapper extends React.Component {
     }
 }
 
-// The number of columns don't change by resizing the window
+// The number of columns and the gutter don't change by resizing the window
 class MyWrapper extends Component {
     render() {
         return (
@@ -91,9 +92,10 @@ class MyWrapper extends Component {
 
 ### ResponsiveMasonry component
 
-| Name                    | PropType | Description                                               | Default                  |
-| ----------------------- | -------- | --------------------------------------------------------- | ------------------------ |
-| columnsCountBreakPoints | Object   | Keys are breakpoints in px, values are the columns number | {350: 1, 750: 2, 900: 3} |
+| Name                    | PropType | Description                                                                              | Default                  |
+| ----------------------- | -------- | ---------------------------------------------------------------------------------------- | ------------------------ |
+| columnsCountBreakPoints | Object   | Keys are breakpoints in px, values are the columns number                                | {350: 1, 750: 2, 900: 3} |
+| gutterBreakpoints       | Object   | Keys are breakpoints in px, values are the gutter value in any valid CSS value for 'gap' |                          |
 
 ## Contributing
 

@@ -10,16 +10,17 @@ import ResponsiveMasonry from "./"
 configure({adapter: new Adapter()})
 
 const columnsCountBreakPoints = {350: 1, 750: 2, 900: 3}
+const gutterBreakPoints = { 350: '10px', 750: '20px', 900: '30px' }
 const content = "Content"
 const ResponsiveFixture = (
-  <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints}>
+  <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints} gutterBreakPoints={gutterBreakPoints}>
     <Masonry>
       <div>{content}</div>
     </Masonry>
   </ResponsiveMasonry>
 )
 const ResponsiveCustomTagsFixture = (
-  <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints}>
+  <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints} gutterBreakPoints={gutterBreakPoints}>
     <Masonry containerTag="ul" itemTag="li">
       <div>{content}</div>
       <div>{content}</div>

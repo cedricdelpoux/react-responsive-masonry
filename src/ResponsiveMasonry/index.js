@@ -9,6 +9,7 @@ import React, {
 import PropTypes from "prop-types"
 
 const DEFAULT_COLUMNS_COUNT = 1
+const DEFAULT_GUTTER = "10px"
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
@@ -49,35 +50,48 @@ const MasonryResponsive = ({
     750: 2,
     900: 3,
   },
+  gutterBreakPoints,
   children,
   className = null,
   style = null,
 }) => {
   const windowWidth = useWindowWidth()
-  const columnsCount = useMemo(() => {
-    const breakPoints = Object.keys(columnsCountBreakPoints).sort(
-      (a, b) => a - b
-    )
-    let count =
-      breakPoints.length > 0
-        ? columnsCountBreakPoints[breakPoints[0]]
-        : DEFAULT_COLUMNS_COUNT
 
-    breakPoints.forEach((breakPoint) => {
-      if (breakPoint < windowWidth) {
-        count = columnsCountBreakPoints[breakPoint]
-      }
-    })
+  const getResponsiveValue = useCallback(
+    (breakPoints, defaultValue) => {
+      const sortedBreakPoints = Object.keys(breakPoints).sort((a, b) => a - b)
+      let value =
+        sortedBreakPoints.length > 0
+          ? breakPoints[sortedBreakPoints[0]]
+          : defaultValue
 
-    return count
-  }, [windowWidth, columnsCountBreakPoints])
+      sortedBreakPoints.forEach((breakPoint) => {
+        if (breakPoint < windowWidth) {
+          value = breakPoints[breakPoint]
+        }
+      })
+
+      return value
+    },
+    [windowWidth]
+  )
+
+  const columnsCount = useMemo(
+    () => getResponsiveValue(columnsCountBreakPoints, DEFAULT_COLUMNS_COUNT),
+    [getResponsiveValue, columnsCountBreakPoints]
+  )
+  const gutter = useMemo(
+    () => getResponsiveValue(gutterBreakPoints, DEFAULT_GUTTER),
+    [getResponsiveValue, gutterBreakPoints]
+  )
 
   return (
     <div className={className} style={style}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
           key: index,
-          columnsCount: columnsCount,
+          columnsCount,
+          gutter,
         })
       )}
     </div>

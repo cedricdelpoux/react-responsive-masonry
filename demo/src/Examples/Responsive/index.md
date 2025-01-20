@@ -19,6 +19,7 @@ class MyWrapper extends React.Component {
         return (
             <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+                gutterBreakPoints={{350: "5px", 750: "16px", 900: "2rem"}}
             >
                 <Masonry>
                     {images.map((image, i) => (
