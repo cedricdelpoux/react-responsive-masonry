@@ -3,22 +3,31 @@ import React from "react"
 
 class Masonry extends React.Component {
   constructor() {
-    super();
-    this.state = { columns: [], childRefs: [], hasDistributed: false };
+    super()
+    this.state = {columns: [], childRefs: [], hasDistributed: false}
   }
 
   componentDidUpdate() {
-    if (!this.state.hasDistributed && !this.props.sequential) this.distributeChildren()
+    if (!this.state.hasDistributed && !this.props.sequential)
+      this.distributeChildren()
   }
 
   static getDerivedStateFromProps(props, state) {
     const {children, columnsCount} = props
-    if (state && children === state.children) return null
+    const hasColumnsChanged = columnsCount !== state.columns.length
+    if (state && children === state.children && !hasColumnsChanged) return null
     return {
       ...Masonry.getEqualCountColumns(children, columnsCount),
       children,
       hasDistributed: false,
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.children !== this.state.children ||
+      nextProps.columnsCount !== this.props.columnsCount
+    )
   }
 
   distributeChildren() {
@@ -73,6 +82,7 @@ class Masonry extends React.Component {
         validIndex++
       }
     })
+
     return {columns, childRefs}
   }
 
@@ -102,6 +112,11 @@ class Masonry extends React.Component {
   render() {
     const {gutter, className, style, containerTag} = this.props
 
+    console.log(
+      "getDerivedStateFromProps::render::::::",
+      this.props.columnsCount,
+      this.state.columns.length
+    )
     return React.createElement(
       containerTag,
       {
