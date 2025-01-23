@@ -82,7 +82,6 @@ class Masonry extends React.Component {
         validIndex++
       }
     })
-
     return {columns, childRefs}
   }
 
@@ -112,11 +111,6 @@ class Masonry extends React.Component {
   render() {
     const {gutter, className, style, containerTag} = this.props
 
-    console.log(
-      "getDerivedStateFromProps::render::::::",
-      this.props.columnsCount,
-      this.state.columns.length
-    )
     return React.createElement(
       containerTag,
       {
