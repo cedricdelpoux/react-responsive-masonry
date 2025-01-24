@@ -70,5 +70,6 @@
     "react-demo-page": "^0.3.6",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1"
-  }
+  },
+  "dependencies": {}
 }
