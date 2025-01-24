@@ -3,22 +3,31 @@ import React from "react"
 
 class Masonry extends React.Component {
   constructor() {
-    super();
-    this.state = { columns: [], childRefs: [], hasDistributed: false };
+    super()
+    this.state = {columns: [], childRefs: [], hasDistributed: false}
   }
 
   componentDidUpdate() {
-    if (!this.state.hasDistributed && !this.props.sequential) this.distributeChildren()
+    if (!this.state.hasDistributed && !this.props.sequential)
+      this.distributeChildren()
   }
 
   static getDerivedStateFromProps(props, state) {
     const {children, columnsCount} = props
-    if (state && children === state.children) return null
+    const hasColumnsChanged = columnsCount !== state.columns.length
+    if (state && children === state.children && !hasColumnsChanged) return null
     return {
       ...Masonry.getEqualCountColumns(children, columnsCount),
       children,
       hasDistributed: false,
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.children !== this.state.children ||
+      nextProps.columnsCount !== this.props.columnsCount
+    )
   }
 
   distributeChildren() {
