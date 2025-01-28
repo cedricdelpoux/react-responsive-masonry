@@ -79,7 +79,7 @@ class MyWrapper extends Component {
 
 ## Props
 
-### Mansonry component
+### Masonry component
 
 | Name         | PropType | Description                                            | Default |
 | ------------ | -------- | ------------------------------------------------------ | ------- |
