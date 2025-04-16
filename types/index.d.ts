@@ -96,6 +96,13 @@ declare module "react-responsive-masonry" {
      */
     columnsCountBreakPoints?: {[breakpoint: number]: number}
     /**
+     * Gutter size between the columns and items for different breakpoints.
+     * Default is 10px.
+     *
+     * @type {{[breakpoint: number]: string} | null}
+     */
+    gutterBreakPoints?: {[breakpoint: number]: string} | null
+    /**
      * Class name for the ResponsiveMasonry component container.
      * Default is null.
      *
