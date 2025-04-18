@@ -96,6 +96,12 @@ declare module "react-responsive-masonry" {
      */
     columnsCountBreakPoints?: {[breakpoint: number]: number}
     /**
+     * Breakpoints for the gutter size in the ResponsiveMasonry component.
+     *
+     * @type {{[breakpoint: number]: number}}
+     */
+    gutterBreakPoints?: {[breakpoint: number]: number}
+    /**
      * Class name for the ResponsiveMasonry component container.
      * Default is null.
      *
