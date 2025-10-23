@@ -9,6 +9,7 @@
   "files": [
     "es",
     "lib",
+    "types",
     "umd"
   ],
   "homepage": "https://github.com/cedricdelpoux/react-responsive-masonry#readme",
