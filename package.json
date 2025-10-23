@@ -65,11 +65,12 @@
     "markdown-loader": "^6.0.0",
     "nwb": "^0.25.2",
     "prettier": "^2.4.1",
-    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-demo-page": "^0.3.6",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }
