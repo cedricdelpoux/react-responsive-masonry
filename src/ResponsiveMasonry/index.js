@@ -26,9 +26,11 @@ const useHasMounted = () => {
 
 const useWindowWidth = () => {
   const hasMounted = useHasMounted()
-  const [width, setWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  )
+  // Always start from 0, matching the server-rendered output, even on the
+  // client's first (hydration) render. Reading window.innerWidth here would
+  // desync from the server render and trigger a hydration mismatch; the
+  // real width is picked up right after mount by the effect below instead.
+  const [width, setWidth] = useState(0)
 
   const handleResize = useCallback(() => {
     if (!hasMounted) return
