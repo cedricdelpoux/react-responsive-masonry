@@ -123,7 +123,9 @@ export interface ResponsiveMasonryProps {
   style?: React.CSSProperties | null
 }
 
-declare const Masonry: React.FC<MasonryProps>
+declare const Masonry: React.ForwardRefExoticComponent<
+  MasonryProps & React.RefAttributes<HTMLElement>
+>
 declare const ResponsiveMasonry: React.FC<ResponsiveMasonryProps>
 
 export default Masonry

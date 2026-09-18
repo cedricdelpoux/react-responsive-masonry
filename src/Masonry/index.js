@@ -3,7 +3,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-class Masonry extends React.Component {
+class MasonryClass extends React.Component {
   constructor() {
     super()
     this.state = {columns: [], childRefs: [], hasDistributed: false}
@@ -53,7 +53,7 @@ class Masonry extends React.Component {
     const hasColumnsChanged = columnsCount !== state.columns.length
     if (state && children === state.children && !hasColumnsChanged) return null
     return {
-      ...Masonry.getEqualCountColumns(children, columnsCount),
+      ...MasonryClass.getEqualCountColumns(children, columnsCount),
       children,
       hasDistributed: false,
     }
@@ -169,11 +169,12 @@ class Masonry extends React.Component {
   }
 
   render() {
-    const {gutter, className, style, containerTag} = this.props
+    const {gutter, className, style, containerTag, forwardedRef} = this.props
 
     return React.createElement(
       containerTag,
       {
+        ref: forwardedRef,
         style: {
           display: "flex",
           flexDirection: "row",
@@ -191,7 +192,7 @@ class Masonry extends React.Component {
   }
 }
 
-Masonry.propTypes = {
+MasonryClass.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -204,9 +205,10 @@ Masonry.propTypes = {
   itemTag: PropTypes.string,
   itemStyle: PropTypes.object,
   sequential: PropTypes.bool,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 }
 
-Masonry.defaultProps = {
+MasonryClass.defaultProps = {
   columnsCount: 3,
   gutter: "0",
   className: null,
@@ -215,6 +217,15 @@ Masonry.defaultProps = {
   itemTag: "div",
   itemStyle: {},
   sequential: false,
+  forwardedRef: null,
 }
+
+// A ref on Masonry points at the container DOM node, e.g. to wrap it with
+// Framer Motion or another library that needs direct access to it, rather
+// than at the class instance forwardRef would otherwise expose by default.
+const Masonry = React.forwardRef((props, ref) => (
+  <MasonryClass {...props} forwardedRef={ref} />
+))
+Masonry.displayName = "Masonry"
 
 export default Masonry

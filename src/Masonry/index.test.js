@@ -28,6 +28,18 @@ describe("Masonry", () => {
     mount(CustomTagsFixture)
   })
 
+  it("forwards a ref to the container DOM node", () => {
+    const ref = React.createRef()
+    const wrapper = mount(
+      <Masonry ref={ref}>
+        <div>{content}</div>
+      </Masonry>
+    )
+
+    expect(ref.current).toBe(wrapper.getDOMNode())
+    wrapper.unmount()
+  })
+
   it("updates the gutter with unchanged children and columnsCount", () => {
     const wrapper = mount(MasonryFixture)
 
