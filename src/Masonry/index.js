@@ -9,6 +9,11 @@ class Masonry extends React.Component {
     this.state = {columns: [], childRefs: [], hasDistributed: false}
   }
 
+  componentDidMount() {
+    if (!this.state.hasDistributed && !this.props.sequential)
+      this.distributeChildren()
+  }
+
   componentDidUpdate() {
     if (!this.state.hasDistributed && !this.props.sequential)
       this.distributeChildren()

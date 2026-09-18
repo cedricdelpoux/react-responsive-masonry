@@ -88,6 +88,18 @@ describe("Masonry", () => {
       jest.restoreAllMocks()
     })
 
+    it("renders balanced columns on the very first mount, with no later update", () => {
+      const wrapper = mount(<Masonry columnsCount={2}>{children}</Masonry>)
+
+      expect(
+        Array.from(
+          wrapper.getDOMNode().children,
+          (column) => column.textContent
+        )
+      ).toEqual(["A", "BCD"])
+      wrapper.unmount()
+    })
+
     it("renders balanced columns after children and column count changes", () => {
       const wrapper = mount(<Masonry columnsCount={2}>{[]}</Masonry>)
 
