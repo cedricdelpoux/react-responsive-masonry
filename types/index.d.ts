@@ -69,6 +69,13 @@ export interface MasonryProps {
    * @type {React.CSSProperties}
    */
   itemStyle?: React.CSSProperties
+  /**
+   * If true, items are placed in the order they are passed.
+   * Default is false.
+   *
+   * @type {boolean}
+   */
+  sequential?: boolean
 }
 
 /**
