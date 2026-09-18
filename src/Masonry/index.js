@@ -12,11 +12,40 @@ class Masonry extends React.Component {
   componentDidMount() {
     if (!this.state.hasDistributed && !this.props.sequential)
       this.distributeChildren()
+    this.observeChildren()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     if (!this.state.hasDistributed && !this.props.sequential)
       this.distributeChildren()
+    if (prevState.childRefs !== this.state.childRefs) this.observeChildren()
+  }
+
+  componentWillUnmount() {
+    if (this.resizeObserver) this.resizeObserver.disconnect()
+  }
+
+  // Children can change size after they've already been placed into a
+  // column, e.g. an image that finishes loading, or a Next.js <Image>
+  // swapping in its real source. Re-run the height-based distribution
+  // whenever that happens, since nothing else would trigger it.
+  observeChildren() {
+    if (this.props.sequential || typeof ResizeObserver === "undefined") return
+
+    if (this.resizeObserver) this.resizeObserver.disconnect()
+    this.lastHeights = new WeakMap()
+    this.resizeObserver = new ResizeObserver((entries) => {
+      const hasRealChange = entries.some((entry) => {
+        const height = entry.contentRect.height
+        const lastHeight = this.lastHeights.get(entry.target)
+        this.lastHeights.set(entry.target, height)
+        return lastHeight !== undefined && lastHeight !== height
+      })
+      if (hasRealChange) this.distributeChildren()
+    })
+    this.state.childRefs.forEach((ref) => {
+      if (ref.current) this.resizeObserver.observe(ref.current)
+    })
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -70,7 +99,19 @@ class Masonry extends React.Component {
           Math.min(...columnHeights)
         )
         columnHeights[minHeightColumnIndex] += childHeight
-        columns[minHeightColumnIndex].push(child)
+        // Keep wrapping the child with its existing ref, the same way
+        // getEqualCountColumns does. Pushing the raw child here would drop
+        // the ref, leaving childRefs pointing at unmounted nodes for any
+        // distribution attempted afterwards (e.g. a later resize).
+        columns[minHeightColumnIndex].push(
+          <div
+            style={{display: "flex", justifyContent: "stretch"}}
+            key={validIndex}
+            ref={this.state.childRefs[validIndex]}
+          >
+            {child}
+          </div>
+        )
         validIndex++
       }
     })

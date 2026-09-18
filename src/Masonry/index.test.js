@@ -135,4 +135,94 @@ describe("Masonry", () => {
       wrapper.unmount()
     })
   })
+
+  describe("re-balancing when a child's size changes after placement", () => {
+    class MockResizeObserver {
+      constructor(callback) {
+        this.callback = callback
+        MockResizeObserver.instances.push(this)
+      }
+      observe() {}
+      disconnect() {}
+    }
+    MockResizeObserver.instances = []
+
+    beforeEach(() => {
+      MockResizeObserver.instances = []
+      global.ResizeObserver = MockResizeObserver
+      jest
+        .spyOn(Element.prototype, "getBoundingClientRect")
+        .mockImplementation(function () {
+          const height = Number(this.firstElementChild.dataset.height)
+          return {
+            height,
+            width: 100,
+            top: 0,
+            left: 0,
+            right: 100,
+            bottom: height,
+            x: 0,
+            y: 0,
+          }
+        })
+    })
+
+    afterEach(() => {
+      delete global.ResizeObserver
+      jest.restoreAllMocks()
+    })
+
+    it("redistributes once a placed child's height actually changes", () => {
+      const children = [
+        <span key="a" data-height="100">
+          A
+        </span>,
+        <span key="b" data-height="10">
+          B
+        </span>,
+        <span key="c" data-height="10">
+          C
+        </span>,
+        <span key="d" data-height="10">
+          D
+        </span>,
+      ]
+      const wrapper = mount(<Masonry columnsCount={2}>{children}</Masonry>)
+
+      expect(
+        Array.from(
+          wrapper.getDOMNode().children,
+          (column) => column.textContent
+        )
+      ).toEqual(["A", "BCD"])
+
+      const bSpan = Array.from(
+        wrapper.getDOMNode().querySelectorAll("[data-height]")
+      ).find((element) => element.textContent === "B")
+      const bWrapper = bSpan.parentElement
+      const observer = MockResizeObserver.instances[0]
+
+      // The observer's first report for an element only seeds its known
+      // size, matching how ResizeObserver reports the starting size as
+      // soon as observe() is called.
+      observer.callback([{target: bWrapper, contentRect: {height: 10}}])
+      expect(
+        Array.from(
+          wrapper.getDOMNode().children,
+          (column) => column.textContent
+        )
+      ).toEqual(["A", "BCD"])
+
+      bSpan.dataset.height = "200"
+      observer.callback([{target: bWrapper, contentRect: {height: 200}}])
+
+      expect(
+        Array.from(
+          wrapper.getDOMNode().children,
+          (column) => column.textContent
+        )
+      ).toEqual(["ACD", "B"])
+      wrapper.unmount()
+    })
+  })
 })
