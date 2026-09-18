@@ -10,17 +10,23 @@ import ResponsiveMasonry from "./"
 configure({adapter: new Adapter()})
 
 const columnsCountBreakPoints = {350: 1, 750: 2, 900: 3}
-const gutterBreakPoints = { 350: '10px', 750: '20px', 900: '30px' }
+const gutterBreakPoints = {350: "10px", 750: "20px", 900: "30px"}
 const content = "Content"
 const ResponsiveFixture = (
-  <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints} gutterBreakPoints={gutterBreakPoints}>
+  <ResponsiveMasonry
+    columnsCountBreakPoints={columnsCountBreakPoints}
+    gutterBreakPoints={gutterBreakPoints}
+  >
     <Masonry>
       <div>{content}</div>
     </Masonry>
   </ResponsiveMasonry>
 )
 const ResponsiveCustomTagsFixture = (
-  <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints} gutterBreakPoints={gutterBreakPoints}>
+  <ResponsiveMasonry
+    columnsCountBreakPoints={columnsCountBreakPoints}
+    gutterBreakPoints={gutterBreakPoints}
+  >
     <Masonry containerTag="ul" itemTag="li">
       <div>{content}</div>
       <div>{content}</div>
@@ -44,6 +50,20 @@ describe("ResponsiveMasonry", () => {
     act(() => {
       window.dispatchEvent(resizeEvent)
     })
+  })
+})
+
+describe("ResponsiveMasonry without gutterBreakPoints", () => {
+  it("does not override the gutter explicitly set on Masonry", () => {
+    const wrapper = mount(
+      <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints}>
+        <Masonry gutter="32px">
+          <div>{content}</div>
+        </Masonry>
+      </ResponsiveMasonry>
+    )
+
+    expect(wrapper.find(Masonry).prop("gutter")).toBe("32px")
   })
 })
 

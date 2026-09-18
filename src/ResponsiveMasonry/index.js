@@ -91,7 +91,7 @@ const MasonryResponsive = ({
         React.cloneElement(child, {
           key: index,
           columnsCount,
-          gutter,
+          ...(Object.keys(gutterBreakPoints).length > 0 ? {gutter} : {}),
         })
       )}
     </div>
