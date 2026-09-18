@@ -97,25 +97,27 @@ class Masonry extends React.Component {
 
   renderColumns() {
     const {gutter, itemTag, itemStyle} = this.props
-    return this.state.columns.map((column, i) =>
-      React.createElement(
-        itemTag,
-        {
-          key: i,
-          style: {
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignContent: "stretch",
-            flex: 1,
-            width: 0,
-            gap: gutter,
-            ...itemStyle,
+    return this.state.columns
+      .filter((column) => column.length > 0)
+      .map((column, i) =>
+        React.createElement(
+          itemTag,
+          {
+            key: i,
+            style: {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-start",
+              alignContent: "stretch",
+              flex: 1,
+              width: 0,
+              gap: gutter,
+              ...itemStyle,
+            },
           },
-        },
-        column.map((item) => item)
+          column.map((item) => item)
+        )
       )
-    )
   }
 
   render() {

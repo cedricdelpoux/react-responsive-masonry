@@ -40,6 +40,17 @@ describe("Masonry", () => {
     wrapper.unmount()
   })
 
+  it("does not render empty columns when there are fewer children than columnsCount", () => {
+    const wrapper = mount(
+      <Masonry columnsCount={3}>
+        <div>{content}</div>
+      </Masonry>
+    )
+
+    expect(wrapper.getDOMNode().children.length).toBe(1)
+    wrapper.unmount()
+  })
+
   describe("height distribution", () => {
     const children = [
       <span key="a" data-height="100">
