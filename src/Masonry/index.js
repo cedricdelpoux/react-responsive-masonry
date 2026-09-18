@@ -23,10 +23,12 @@ class Masonry extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.children !== this.state.children ||
-      nextProps.columnsCount !== this.props.columnsCount
+      nextProps.columnsCount !== this.props.columnsCount ||
+      nextProps.gutter !== this.props.gutter ||
+      nextState.columns !== this.state.columns
     )
   }
 
@@ -34,21 +36,29 @@ class Masonry extends React.Component {
     const {children, columnsCount} = this.props
     const columnHeights = Array(columnsCount).fill(0)
 
-    const isReady = this.state.childRefs.every(
-      (ref) => ref.current.getBoundingClientRect().height
+    const {childHeights, isReady} = this.state.childRefs.reduce(
+      (result, ref) => {
+        const height = ref.current.getBoundingClientRect().height
+
+        result.childHeights.push(height)
+        result.isReady = result.isReady && Boolean(height)
+
+        return result
+      },
+      {childHeights: [], isReady: true}
     )
 
     if (!isReady) return
 
     const columns = Array.from({length: columnsCount}, () => [])
+
     let validIndex = 0
+
     React.Children.forEach(children, (child) => {
       if (child && React.isValidElement(child)) {
         // .current is undefined if ref was passed to a functional component without forwardRef
         // now passing ref into a wrapper div so it should always be defined
-        const childHeight =
-          this.state.childRefs[validIndex].current.getBoundingClientRect()
-            .height
+        const childHeight = childHeights[validIndex]
         const minHeightColumnIndex = columnHeights.indexOf(
           Math.min(...columnHeights)
         )
