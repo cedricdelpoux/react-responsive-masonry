@@ -67,6 +67,49 @@ describe("ResponsiveMasonry without gutterBreakPoints", () => {
   })
 })
 
+describe("ResponsiveMasonry reacts to the container width", () => {
+  class MockResizeObserver {
+    constructor(callback) {
+      this.callback = callback
+      MockResizeObserver.instances.push(this)
+    }
+    observe() {}
+    disconnect() {}
+  }
+  MockResizeObserver.instances = []
+
+  beforeEach(() => {
+    MockResizeObserver.instances = []
+    global.ResizeObserver = MockResizeObserver
+  })
+
+  afterEach(() => {
+    delete global.ResizeObserver
+  })
+
+  it("picks columnsCount from the container's width, not the window's", () => {
+    const wrapper = mount(
+      <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints}>
+        <Masonry>
+          <div>{content}</div>
+        </Masonry>
+      </ResponsiveMasonry>
+    )
+
+    act(() => {
+      // Masonry sets up its own ResizeObserver (to watch each child's
+      // height) too, mounting before ResponsiveMasonry's effect runs, so
+      // ResponsiveMasonry's own container-width observer is the last one
+      // created.
+      const instances = MockResizeObserver.instances
+      instances[instances.length - 1].callback([{contentRect: {width: 800}}])
+    })
+    wrapper.update()
+
+    expect(wrapper.find(Masonry).prop("columnsCount")).toBe(2)
+  })
+})
+
 describe("ResponsiveMasonry with custom tags", () => {
   it("renders", () => {
     mount(ResponsiveCustomTagsFixture)

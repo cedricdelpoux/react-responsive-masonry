@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
 } from "react"
 
@@ -24,26 +25,35 @@ const useHasMounted = () => {
   return hasMounted
 }
 
-const useWindowWidth = () => {
+// Breakpoints are matched against the container's own rendered width
+// rather than the window's, so nesting ResponsiveMasonry in a sidebar or
+// any container narrower than the viewport still picks the right column
+// count for the space it actually has.
+const useElementWidth = (ref) => {
   const hasMounted = useHasMounted()
   // Always start from 0, matching the server-rendered output, even on the
-  // client's first (hydration) render. Reading window.innerWidth here would
-  // desync from the server render and trigger a hydration mismatch; the
-  // real width is picked up right after mount by the effect below instead.
+  // client's first (hydration) render. Measuring the DOM here would desync
+  // from the server render and trigger a hydration mismatch; the real
+  // width is picked up right after mount by the effect below instead.
   const [width, setWidth] = useState(0)
 
-  const handleResize = useCallback(() => {
-    if (!hasMounted) return
-    setWidth(window.innerWidth)
-  }, [hasMounted])
-
   useIsomorphicLayoutEffect(() => {
-    if (hasMounted) {
-      window.addEventListener("resize", handleResize)
+    if (!hasMounted || !ref.current) return
+
+    if (typeof ResizeObserver === "undefined") {
+      const handleResize = () =>
+        setWidth(ref.current.getBoundingClientRect().width)
       handleResize()
+      window.addEventListener("resize", handleResize)
       return () => window.removeEventListener("resize", handleResize)
     }
-  }, [hasMounted, handleResize])
+
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      setWidth(entry.contentRect.width)
+    })
+    resizeObserver.observe(ref.current)
+    return () => resizeObserver.disconnect()
+  }, [hasMounted, ref])
 
   return width
 }
@@ -59,7 +69,8 @@ const MasonryResponsive = ({
   className = null,
   style = null,
 }) => {
-  const windowWidth = useWindowWidth()
+  const containerRef = useRef(null)
+  const containerWidth = useElementWidth(containerRef)
 
   const getResponsiveValue = useCallback(
     (breakPoints, defaultValue) => {
@@ -70,14 +81,14 @@ const MasonryResponsive = ({
           : defaultValue
 
       sortedBreakPoints.forEach((breakPoint) => {
-        if (breakPoint < windowWidth) {
+        if (breakPoint < containerWidth) {
           value = breakPoints[breakPoint]
         }
       })
 
       return value
     },
-    [windowWidth]
+    [containerWidth]
   )
 
   const columnsCount = useMemo(
@@ -90,7 +101,7 @@ const MasonryResponsive = ({
   )
 
   return (
-    <div className={className} style={style}>
+    <div ref={containerRef} className={className} style={style}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
           key: index,
