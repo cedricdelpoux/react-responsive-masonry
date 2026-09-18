@@ -127,4 +127,4 @@ declare const Masonry: React.FC<MasonryProps>
 declare const ResponsiveMasonry: React.FC<ResponsiveMasonryProps>
 
 export default Masonry
-export {ResponsiveMasonry}
+export {Masonry, ResponsiveMasonry}
