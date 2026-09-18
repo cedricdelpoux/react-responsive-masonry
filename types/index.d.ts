@@ -104,9 +104,9 @@ export interface ResponsiveMasonryProps {
   /**
    * Breakpoints for the gutter size in the ResponsiveMasonry component.
    *
-   * @type {{[breakpoint: number]: number}}
+   * @type {{[breakpoint: number]: string}}
    */
-  gutterBreakPoints?: {[breakpoint: number]: number}
+  gutterBreakPoints?: {[breakpoint: number]: string}
   /**
    * Class name for the ResponsiveMasonry component container.
    * Default is null.
