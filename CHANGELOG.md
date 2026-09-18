@@ -1,3 +1,11 @@
+# 2.9.0 - 2026-09-18
+
+-   Fixed: height-balanced columns never rendering on the very first mount, only after a later update (#26)
+-   Fixed: a child's height changing after it was already placed (e.g. a lazy-loaded image) never triggered a re-layout (#27)
+-   Fixed: missing `react` peerDependency (#107)
+-   Added: `ref` on `Masonry` now points to its container DOM node instead of the component instance (#119)
+-   Added: `columnsCountBreakPoints` and `gutterBreakPoints` now match against the container's own width instead of the window's, so nesting `ResponsiveMasonry` in a narrower container works as expected (#115)
+
 # 2.8.0 - 2026-09-18
 
 -   Fixed: balanced columns and gutter updates not re-rendering (#152)
