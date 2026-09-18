@@ -13,6 +13,9 @@ const extraWebpackConfig = {
 // eslint-disable-next-line
 module.exports = {
   type: "react-component",
+  babel: {
+    loose: false,
+  },
   npm: {
     cjs: true,
     esModules: true,
