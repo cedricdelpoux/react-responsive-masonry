@@ -1,3 +1,15 @@
+# 2.8.0 - 2026-09-18
+
+-   Fixed: balanced columns and gutter updates not re-rendering (#152)
+-   Fixed: `gutter` prop overridden by ResponsiveMasonry when no `gutterBreakPoints` is set (#146)
+-   Fixed: `gutterBreakPoints` type using the wrong value type
+-   Fixed: `sequential` prop missing from TypeScript definitions
+-   Fixed: empty columns reserving space with fewer children than columnsCount (#16)
+-   Fixed: broken CommonJS build crashing on require() (#156, #127)
+-   Fixed: crash when used inside a Next.js Server Component (#113)
+-   Fixed: hydration mismatch in ResponsiveMasonry on SSR
+-   Added: `Masonry` is now also available as a named export (#148, #22)
+
 # 2.7.0 - 2025-01-20
 
 -   add responsive gutters by @kriskuiper
